@@ -8,7 +8,7 @@ def index():
     return render_template('index.html')
 
 # Route for an about page
-@app.route('/about')
+@app.route('/notes')
 def about():
     return render_template('about.html')
 

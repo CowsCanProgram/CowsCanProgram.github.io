@@ -1,0 +1,35 @@
+import pyautogui
+import time
+try:
+    for i in range(0, 6, 1):
+        time.sleep(5)
+        pyautogui.keyDown('option')
+        for i in range(0, 19, 1):
+            pyautogui.keyDown('a')
+            time.sleep(14.5)
+            pyautogui.keyUp('a')
+            pyautogui.keyDown('s')
+            time.sleep(0.7)
+            pyautogui.keyUp('s')
+            pyautogui.keyDown('d')
+            time.sleep(14.5)
+            pyautogui.keyUp('d')
+            pyautogui.keyDown('s')
+            time.sleep(0.7)
+            pyautogui.keyUp('s')
+        pyautogui.keyUp('option')
+        pyautogui.press('/')
+        pyautogui.press('w')
+        pyautogui.press('a')
+        pyautogui.press('r')
+        pyautogui.press('p')
+        pyautogui.press('space')
+        pyautogui.press('g')
+        pyautogui.press('a')
+        pyautogui.press('r')
+        pyautogui.press('d')
+        pyautogui.press('e')
+        pyautogui.press('n')
+        pyautogui.press('enter')
+except KeyboardInterrupt:
+    print('Done')

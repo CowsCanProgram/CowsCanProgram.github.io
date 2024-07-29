@@ -2,51 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Derrick's Projects</title>
+    <title>Index Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
         }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
+        .header {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
-
-        section {
-            padding: 2em;
+        h1 {
+            margin-bottom: 20px;
         }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Derrick's Projects</h1>
-        <p>Feel free to look around!</p>
-    </header>
-
-    <section>
-        <h2>Notes</h2>
-        <p>Notes of various textbooks that I have finished.</p>
-        <body>
-        Vector Calculus, 6th Edition by Marsden and Tromba: <<embed src="Nonlinear Dynamics Chaos 2018 Strogatz.pdf">>
-        </body>
-    </section>
+    <div class="header">AllThingsScience</div>
+    <h1>Welcome to AllThingsScience!</h1>
+    <h1>To get started, please select a category.</h1>
+    <h1>If you are unsure, click the "Hodge-Podge" button for everything.</h1>
+    <div class="button-container">
+        <button onclick="location.href='/math'">Math</button>
+        <button onclick="location.href='/physics'">Physics</button>
+        <button onclick="location.href='/chemistry'">Chemistry</button>
+        <button onclick="location.href='/biology'">Biology</button>
+        <button onclick="location.href='/hodgepodge'">Hodge-Podge</button>
+    </div>
 </body>
 </html>

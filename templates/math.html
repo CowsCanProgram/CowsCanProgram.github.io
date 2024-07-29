@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math</title>
+</head>
+<body>
+    <h1>Guess the Math Equation!</h1>
+    <button onclick="location.href='/'">Back to Index</button>
+    <button onclick="location.href='/random_math'">Randomize</button>
+    <div>
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Math Equation" style="max-width: 100%; height: auto;">
+        {% else %}
+            <p>No image to display.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

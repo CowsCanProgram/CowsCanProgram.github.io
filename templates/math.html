@@ -23,6 +23,13 @@
             top: 10px;
             left: 10px;
         }
+        .status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
         .image-container {
             margin-bottom: 20px;
         }
@@ -48,32 +55,34 @@
         .incorrect {
             color: red;
         }
+        .reset-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="buttons">
-        <button type="button" onclick="location.href='/random_math'">Start</button>
+    <button class="back-button" onclick="location.href='/reset_session'">Back to Index</button>
+    <div class="status">
+        Correct: {{ correct_count }} | Incorrect: {{ incorrect_count }}
     </div>
-    <button class="back-button" onclick="location.href='/'">Back to Index</button>
     <div class="container">
         <h1>Welcome to Page 4</h1>
-        <div class="image-container">
-            {% if new_image_url %}
-                <img src="{{ new_image_url }}" alt="New Math Equation">
-            {% endif %}
-        </div>
-        
-        
-        <form action="/check_answer" method="post">
-            <div class="text-input">
-                <input type="hidden" name="equation" value="{{ new_equation }}">
-                <input type="text" name="user_answer" placeholder="Enter text here">
+        {% if image_url %}
+            <div class="image-container">
+                <img src="{{ image_url }}" alt="Math Equation">
             </div>
-            <div class="buttons">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-        
+            <form action="/check_answer" method="post">
+                <div class="text-input">
+                    <input type="hidden" name="equation" value="{{ equation }}">
+                    <input type="text" name="user_answer" placeholder="Enter text here">
+                </div>
+                <div class="buttons">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        {% else %}
+            <button class="start-button" onclick="location.href='/random_math'">Start</button>
+        {% endif %}
         <div class="result">
             {% if result %}
                 <p class="{{ 'correct' if result == 'Correct' else 'incorrect' }}">{{ result }}</p>

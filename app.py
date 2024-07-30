@@ -6,10 +6,18 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
 equations = {
-    r'E=mc^2': 'Einstein Equation',
-    r'a^2+b^2=c^2': 'Pythagorean Equation',
-    r'\frac{d}{dx}e^x=e^x': 'd/dx e^x = e^x',
-    r'\int_0^{\infty}e^{-x^2}dx=\frac{\sqrt{\pi}}{2}': '∫_0^∞ e^(-x^2) dx = √π/2'
+    r'c^2=a^2+b^2': 'Pythagorean Theorem',
+    r'c^2=a^2+b^2-2ab\cos{C}': 'Law of Cosines',
+    r'\frac{\sin{A}}{a}=\frac{\sin{B}}{b}=\frac{\sin{C}}{c}=\frac{1}{2R}': 'Extended Law of Sines',
+    r'A=\sqrt{s(s-a)(s-b)(s-c)}': 'Heron\'s Formula',
+    r'OO_A+OO_B+OO_C=\frac{abc(|\cos{A}|+|\cos{B}|+|\cos{C}|)}{4|\Delta|}': 'Carnot\'s Theorem',
+    r'b^2m+c^2n=amn+d^2a': 'Stewart\'s Theorem', 
+    r'\lambda(n)=(-1)^{\Omega(n)}': 'Liouville Function',
+    r'\forall\textit{x}\forall\textit{y}[\forall\textit{z}(\textit{z}\in\textit{x}\Leftrightarrow\textit{z}\in\textit{y})\Rightarrow\textit{x}=\textit{y}]': 'Axiom of Extensionality',
+    r'\forall\textit{x}[\exists\textit{a}(\textit{a}\in\textit{x})\Rightarrow\exists\textit{y}(\textit{y}\in\textit{x}\land\lnot\exists\textit{z}(\textit{z}\in\textit{y}\land\textit{z}\in\textit{x}))]': 'Axiom of Regularity'
+    
+    
+    
 }
 
 @app.route('/')
@@ -39,26 +47,7 @@ def math():
                            new_equation=new_equation,
                            correct_count=session['correct_count'],
                            incorrect_count=session['incorrect_count'])
-
-
-
-@app.route('/physics')
-def physics():
-    return render_template('physics.html')
-
-@app.route('/chemistry')
-def chemistry():
-    return render_template('chemistry.html')
-
-@app.route('/biology')
-def biology():
-    return render_template('biology.html')
-
-
-@app.route('/hodgepodge')
-def hodgepodge():
-    return render_template('hodgepodge.html')
-
+    
 @app.route('/random_math')
 def random_math():
     equation = random.choice(list(equations.keys()))

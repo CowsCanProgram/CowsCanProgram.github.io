@@ -2,18 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Math</title>
+    <title>Page 4</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            position: relative;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        .text-input {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Guess the Math Equation!</h1>
-    <button onclick="location.href='/'">Back to Index</button>
-    <button onclick="location.href='/random_math'">Randomize</button>
-    <div>
-        {% if image_url %}
-            <img src="{{ image_url }}" alt="Math Equation" style="max-width: 100%; height: auto;">
-        {% else %}
-            <p>No image to display.</p>
-        {% endif %}
+    <div class="buttons">
+        <button type="button" onclick="location.href='/random_math'">Start</button>
+    </div>
+    <button class="back-button" onclick="location.href='/'">Back to Index</button>
+    <div class="container">
+        <h1>Welcome to Page 4</h1>
+        <div class="image-container">
+            {% if new_image_url %}
+                <img src="{{ new_image_url }}" alt="New Math Equation">
+            {% endif %}
+        </div>
+        
+        
+        <form action="/check_answer" method="post">
+            <div class="text-input">
+                <input type="hidden" name="equation" value="{{ new_equation }}">
+                <input type="text" name="user_answer" placeholder="Enter text here">
+            </div>
+            <div class="buttons">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        
+        <div class="result">
+            {% if result %}
+                <p class="{{ 'correct' if result == 'Correct' else 'incorrect' }}">{{ result }}</p>
+                {% if result == 'Incorrect' and correct_answer %}
+                    <p>The correct answer is: {{ correct_answer }}</p>
+                {% endif %}
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>

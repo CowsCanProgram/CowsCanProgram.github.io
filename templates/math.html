@@ -2,35 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Page 4</title>
+    <title>Math Page</title>
     <style>
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             margin: 0;
             text-align: center;
             position: relative;
+            background-color: black; /* Set the background color to black */
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
         .container {
             max-width: 600px;
             width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background for readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .back-button, .submit-button {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
         .back-button {
             position: absolute;
-            top: 10px;
+            margin-top: 20px;
             left: 10px;
+            z-index: 1000; /* Ensure the button is above other elements */
         }
         .status {
             position: absolute;
-            top: 10px;
+            margin-top: 35px;
             right: 10px;
             font-size: 18px;
             font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .welcome-message {
+            margin-top: 20px;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
         }
         .image-container {
+            margin-top: 20px;
             margin-bottom: 20px;
         }
         .image-container img {
@@ -55,41 +86,44 @@
         .incorrect {
             color: red;
         }
-        .reset-button {
-            margin-top: 20px;
-        }
     </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <button class="back-button" onclick="location.href='/reset_session'">Back to Index</button>
     <div class="status">
         Correct: {{ correct_count }} | Incorrect: {{ incorrect_count }}
     </div>
-    <div class="container">
-        <h1>Welcome to Guess the Math Equation!</h1>
-        {% if image_url %}
-            <div class="image-container">
-                <img src="{{ image_url }}" alt="Math Equation">
-            </div>
-            <form action="/check_answer" method="post">
-                <div class="text-input">
-                    <input type="hidden" name="equation" value="{{ equation }}">
-                    <input type="text" name="user_answer" placeholder="Enter text here">
+    <div class="welcome-message">
+        Welcome to \(\mathbb{G}\mathbb{U}\mathbb{E}\mathbb{S}\mathbb{S}\) \(\mathbb{T}\mathbb{H}\mathbb{E}\) \(\mathbb{M}\Delta\mathbb{T}\mathbb{H}\) \(\mathbb{E}\mathbb{Q}\mathbb{U}\Delta\mathbb{T}\mathbb{I}\mathbb{O}\mathbb{N}\)
+    </div>
+    <div class="content">
+        <div class="container">
+            {% if image_url %}
+                <div class="image-container">
+                    <img src="{{ image_url }}" alt="Math Equation">
                 </div>
-                <div class="buttons">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        {% else %}
-            <button class="start-button" onclick="location.href='/random_math'">Start</button>
-        {% endif %}
-        <div class="result">
-            {% if result %}
-                <p class="{{ 'correct' if result == 'Correct' else 'incorrect' }}">{{ result }}</p>
-                {% if result == 'Incorrect' and correct_answer %}
-                    <p>The correct answer is: {{ correct_answer }}</p>
-                {% endif %}
+                <form action="/check_answer" method="post" autocomplete="off">
+                    <div class="text-input">
+                        <input type="hidden" name="equation" value="{{ equation }}">
+                        <input type="text" name="user_answer" placeholder="Enter text here" value="" autocomplete="off">
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="submit-button">Submit</button>
+                    </div>
+                </form>
+            {% else %}
+                <button class="start-button" onclick="location.href='/random_math'">Start</button>
             {% endif %}
+            <div class="result">
+                {% if result %}
+                    <p class="{{ 'correct' if result == 'Correct' else 'incorrect' }}">{{ result }}</p>
+                    {% if result == 'Incorrect' and correct_answer %}
+                        <p>The correct answer is: {{ correct_answer }}</p>
+                    {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>
